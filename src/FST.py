@@ -53,3 +53,14 @@ class State:
             return ok
         else:
             return False
+
+
+class Transition:
+    def __init__(self, from_state, transition, output, to_state):
+        self.from_state = from_state
+        self.transition = transition
+        self.output = output
+        self.to_state = to_state
+
+    def equals(self, transition):
+        return (self.from_state == transition.from_state) and (self.transition == transition.transition) and (self.output == transition.output) and (self.to_state == transition.to_state)
