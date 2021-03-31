@@ -22,3 +22,14 @@ class Phoneme:
                 self.features = features
             else:
                 self.features = fm[self.symbol]['features']
+
+    def in_natural_class(self, phoneme):
+        if phoneme.name == 'word boundary':
+            return self.name == 'word boundary'
+
+        # from self's features, get the equivalent features in input phoneme
+        input_char_features = {
+            k: phoneme.feautres[k] for k in self.features.keys()}
+
+        # compare the features
+        return (input_char_features == self.features)
