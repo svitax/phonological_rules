@@ -33,3 +33,23 @@ class Phoneme:
 
         # compare the features
         return (input_char_features == self.features)
+
+
+class State:
+    def __init__(self, tag):
+        self.tag = tag
+        self.transitions = []
+
+    def add_link(self, transition):
+        self.transitions.append(transition)
+
+    def equals(self, state):
+        ok = (self.tag == state.tag)
+        if len(self.transitions) == len(state.transitions):
+            # for i in range(len(self.transitions)):
+            for i, val in enumerate(self.transitions):
+                ok = ok and (val == state.transitions[i])
+                # ok = ok and (self.transitions[i] == state.transitions[i])
+            return ok
+        else:
+            return False
